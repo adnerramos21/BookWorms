@@ -7,9 +7,13 @@
 .sfdx/
 .localdevserver/
 deploy-options.json
+@salesforce/
+localcompile.txt
 
 # LWC VSCode autocomplete
 **/lwc/jsconfig.json
+.vscode/
+.history/
 
 # LWC Jest coverage reports
 coverage/
@@ -46,3 +50,11 @@ $RECYCLE.BIN/
 **/__pycache__/
 **/.venv/
 **/venv/
+
+# Environment
+# Crucial: This blocks your private deployment keys from leaking to GitHub
+.env
+*.key
+*.crt
+server.key
+server.crt
