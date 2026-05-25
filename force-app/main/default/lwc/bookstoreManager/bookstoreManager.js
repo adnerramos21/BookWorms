@@ -1,3 +1,4 @@
+// CI/CD PoC test — triggered from feature branch
 import { LightningElement, track } from 'lwc';
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import searchBookAvailability from '@salesforce/apex/BookStoreController.searchBookAvailability';
