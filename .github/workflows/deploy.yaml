@@ -1,0 +1,58 @@
+# .github/workflows/deploy.yml
+name: Deploy Delta to Sandbox
+
+on:
+  push:
+    branches:
+      - main  # Only fires when a PR is merged into main
+
+jobs:
+  deploy:
+    name: Deploy Delta Changes
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout full git history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Salesforce CLI
+        run: |
+          curl -fsSL https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.xz \
+            | tar xJ --strip-components=1 -C /usr/local
+          sf --version
+
+      - name: Install sfdx-git-delta
+        run: |
+          echo "y" | sf plugins install sfdx-git-delta
+
+      - name: Authenticate to Salesforce via JWT
+        run: |
+          echo "${{ secrets.SERVER_KEY }}" | base64 --decode > /tmp/server.key
+          sf org login jwt \
+            --client-id      ${{ secrets.SF_CONSUMER_KEY }} \
+            --jwt-key-file   /tmp/server.key \
+            --username       ${{ secrets.SF_USERNAME }} \
+            --instance-url   ${{ secrets.SF_INSTANCE_URL }} \
+            --set-default \
+            --alias          bookworms
+
+      - name: Generate delta package
+        run: |
+          mkdir -p delta-package
+          sf sgd source delta \
+            --from "HEAD~1" \
+            --to   "HEAD" \
+            --output ./delta-package \
+            --generate-delta
+          echo "── Deploying these components ──"
+          cat ./delta-package/package/package.xml
+
+      - name: Deploy to Sandbox
+        run: |
+          sf project deploy start \
+            --manifest   ./delta-package/package/package.xml \
+            --target-org bookworms \
+            --test-level NoTestRun \
+            --wait       30
