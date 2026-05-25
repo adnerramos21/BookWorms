@@ -1,0 +1,33 @@
+<template>
+    <div class="wrapper">
+        <lightning-card title="Search for book availability">
+            <div class="slds-p-around_medium">
+                <div class="slds-form-element slds-m-bottom_small">
+                    <label class="slds-form-element__label" for="text-input-title">Title</label>
+                    <div class="slds-form-element__control">
+                        <input type="text" id="text-input-title" class="slds-input" name="title" value={formData.title}
+                            oninput={handleInput} />
+                    </div>
+
+                    <label class="slds-form-element__label" for="text-input-author">Author</label>
+                    <div class="slds-form-element__control slds-m-bottom_small">
+                        <input type="text" id="text-input-author" class="slds-input" name="author"
+                            value={formData.author} oninput={handleInput} />
+                    </div>
+
+                    <div>------- OR -------</div>
+
+                    <label class="slds-form-element__label" for="text-input-isbn">ISBN</label>
+                    <div class="slds-form-element__control">
+                        <input type="text" id="text-input-isbn" class="slds-input" name="isbn" value={formData.isbn}
+                            oninput={handleInput} />
+                    </div>
+                </div>
+                <div class="slds-m-bottom_small">
+                    <lightning-button variant="brand" label="Search" slot="actions"
+                        onclick={handleClick}></lightning-button>
+                </div>
+            </div>
+        </lightning-card>
+    </div>
+</template>

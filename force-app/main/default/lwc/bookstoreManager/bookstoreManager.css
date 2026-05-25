@@ -1,0 +1,10 @@
+.text-alert {
+    padding: 0.5rem;
+    background: #16325c;
+    font-size: .85rem;
+}
+
+.spinner-wrapper {
+    position:relative;
+    height: 100px;
+}

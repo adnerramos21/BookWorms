@@ -1,0 +1,29 @@
+<template>
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col">
+            <c-book-search onsearch={searchHandler}></c-book-search>
+        </div>
+        <div class="slds-col">
+            <c-reservation-list reservations={listOfReservations}></c-reservation-list>
+        </div>
+    </div>
+    <div class="slds-m-bottom_small"></div>
+
+    <div if:true={isEmpty} class="text-alert">
+        <p class="slds-text-color_inverse">Title, Author and ISBN are empty. Please fill out any of the fields.</p>
+    </div>
+
+    <div if:true={hasNoData} class="text-alert">
+        <p class="slds-text-color_inverse">No data returned. Please change field parameters.</p>
+    </div>
+
+    <template lwc:if={isLoading}>
+        <div class="spinner-wrapper">
+            <lightning-spinner alternative-text="Loading books..." size="small"></lightning-spinner>
+        </div>
+    </template>
+
+    <c-book-results lwc:if={isTableVisible} data={listOfBooks}
+        oncreatedreservation={handleCreatedReservation}></c-book-results>
+
+</template>

@@ -1,0 +1,71 @@
+.pill {
+    display: inline-flex;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-radius: 1rem;
+    border: 1px solid rgb(1, 118, 211);
+    background-color: rgb(1, 118, 211);
+    color: white;
+}
+
+.pill .pill-label {
+    font-size: 14px;
+    text-wrap-mode: nowrap;
+}
+
+.Reserved {
+    border: 1px solid rgb(46, 132, 74);
+    background-color: rgb(46, 132, 74);
+}
+
+.Cancelled {
+    border: 1px solid rgb(186, 5, 23);
+    background-color: rgb(186, 5, 23);
+}
+
+.Expired {
+    border: 1px solid rgb(165, 118, 9);
+    background-color: rgb(165, 118, 9);
+}
+
+.text-reserved {
+    color: rgb(46, 132, 74);
+}
+
+.text-pickedup {
+    color: rgb(1, 118, 211);
+}
+
+.text-cancelled {
+    color: rgb(186, 5, 23);
+}
+
+.text-expired {
+    color: rgb(165, 118, 9);
+}
+
+.reservation-block {
+    font-size: 14px;
+}
+
+.datetime-block {
+    border-top: 1px dashed #84a4ae;
+}
+
+.wrapper {
+    height: 400px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+mark.marker-highlight {
+    background-color: #FFF44F;
+    /* A typical marker yellow color */
+    color: inherit;
+}
+
+.show-statistics {
+    background: white;
+    border-radius: 0.25rem 0.25rem 0 0;
+    padding: 5px;
+}

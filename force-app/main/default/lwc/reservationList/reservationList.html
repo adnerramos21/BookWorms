@@ -1,0 +1,39 @@
+<template>
+    <div class="show-statistics">
+        <span>Total Reservations of {totalReservation} items </span> |
+        <span class="text-reserved"> Reserved: {totalReserved} </span> |
+        <span class="text-pickedup"> Picked up: {totalPickedUp} </span> |
+        <span class="text-cancelled"> Cancelled: {totalCancelled} </span> |
+        <span class="text-expired"> Expired: {totalExpired} </span> 
+    </div>
+    <div class="wrapper">
+        <template for:each={reservationList} for:item="reservation">
+            <div key={reservation.id} class="slds-m-bottom_x-small reservation-block">
+                <lightning-card title={reservation.name}>
+                    <div class="slds-p-horizontal_medium">
+                        <div class={reservation.cssClassPill}>
+                            <span class="pill-label">{reservation.status}</span>
+                        </div>
+
+                        <ul class="contact-book-info">
+                            <li>Contact : {reservation.contact} <mark class="marker-highlight"
+                                    lwc:if={reservation.pickupContact}> | The person responsible for picking up the item
+                                    is {reservation.pickupContact} </mark></li>
+                            <li>Book : {reservation.book}</li>
+                            <li>Creation Date : {reservation.createdDateTime}</li>
+                        </ul>
+
+                        <div lwc:if={reservation.canShowDatetimeBlock} class="datetime-block">
+                            <p>
+                                <span>Pick up your book on {reservation.reservationDateTime}</span> <br>
+                                <mark class="marker-highlight">If item is not picked up by
+                                    {reservation.expirationDateTime}, the status will be set
+                                    to expired. </mark>
+                            </p>
+                        </div>
+                    </div>
+                </lightning-card>
+            </div>
+        </template>
+    </div>
+</template>

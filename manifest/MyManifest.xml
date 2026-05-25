@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>BookDTO</members>
+        <members>BookStoreController</members>
+        <members>ReservationDTO</members>
+        <members>ReservationTriggerHandler</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>ReservationTrigger</members>
+        <name>ApexTrigger</name>
+    </types>
+    <version>66.0</version>
+</Package>
