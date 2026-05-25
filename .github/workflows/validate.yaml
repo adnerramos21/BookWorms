@@ -28,8 +28,10 @@ jobs:
           sf --version
 
       - name: Install sfdx-git-delta
+        env:
+          SF_SKIP_NEW_VERSION_CHECK: true
         run: |
-          npm i sfdx-git-delta@5.0.0
+          sf plugins install sfdx-git-delta --no-verify
           sf sgd --version
 
       - name: Authenticate to Salesforce via JWT
