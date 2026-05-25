@@ -28,11 +28,9 @@ jobs:
           sf --version
 
       - name: Install sfdx-git-delta
-        env:
-          SF_PLUGINS_UNSIGNEDPLUGINALLOWLIST: sfdx-git-delta
         run: |
-          sf plugins install sfdx-git-delta
-          sf sgd --version
+          yes | sf plugins install sfdx-git-delta
+          sf plugins | grep sfdx-git-delta
 
       - name: Authenticate to Salesforce via JWT
         run: |
@@ -53,7 +51,6 @@ jobs:
             --to   "HEAD" \
             --output ./delta-package \
             --generate-delta
-          echo "── package.xml contents ──"
           cat ./delta-package/package/package.xml
 
       - name: Validate (dry-run) with Apex tests
