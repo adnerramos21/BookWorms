@@ -29,7 +29,7 @@ jobs:
 
       - name: Install sfdx-git-delta
         run: |
-          sf plugins install @salesforce/sfdx-git-delta
+          npm i sfdx-git-delta@5.0.0
           sf sgd --version
 
       - name: Authenticate to Salesforce via JWT
